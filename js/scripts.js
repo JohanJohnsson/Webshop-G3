@@ -5,3 +5,11 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
+
+function validateForm() {
+    var name = document.getElementById("inputName").value;
+    var email = document.getElementById("inputEmai").value
+    var adress = document.getElementById("inputAddress").value
+    var city = document.getElementById("inputCity").value
+    var zip = document.getElementById("inputZip").value
+}

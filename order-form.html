@@ -23,7 +23,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="order-form.html">Beställningsformulär(Test)</a></li>
+                        <li class="nav-item"><a class="nav-link" href="order-form.html">BeställningsformulärTest</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -48,26 +48,63 @@
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">About</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Information about us</p>
+                    <h1 class="display-4 fw-bolder">Oreder form</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Type in your information</p>
                 </div>
             </div>
         </header>
         <!-- Section-->
 
-        <div id="p1About">
-            <p>Grupp3 Electronics är din ultimata destination för elektronikprodukter av hög kvalitet. 
-                Vi erbjuder ett omfattande utbud av elektronikvaror, inklusive smartphones, bärbara datorer, 
-                surfplattor, tillbehör och mycket mer. Vårt fokus ligger på att erbjuda den senaste tekniken till 
-                konkurrenskraftiga priser, samtidigt som vi prioriterar kundnöjdhet genom enkel navigering på vår webbplats, 
-                säkra betalningsalternativ och snabb leverans. Oavsett om du letar efter en uppdatering av din nuvarande 
-                enhet eller behöver det senaste inom teknikvärlden, så är Grupp3 Electronics din pålitliga partner.
-            </p> <hr>
-
+        <div id="order-form">
+            <form class="row g-3">
+                <div class="col-md-6">
+                  <label for="inputName" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="inputName" placeholder="Firstname Lastname" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail4" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="inputEmai" placeholder="example@gmail.com" required>
+                </div>
+                <div class="col-12">
+                  <label for="inputAddress" class="form-label">Address</label>
+                  <input type="text" class="form-control" id="inputAddress" placeholder="Nackademivägen 23" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Country</label>
+                    <select id="inputState" class="form-select">
+                      <option selected>Choose...</option>
+                      <option value="1">Sweden</option>
+                      <option value="2">Norway</option>
+                      <option value="3">Finland</option>
+                      <option value="4">Iceland</option>
+                      <option value="5">Denmark</option>
+                    </select>
+                  </div>
+                <div class="col-md-6">
+                  <label for="inputCity" class="form-label">City</label>
+                  <input type="text" class="form-control" id="inputCity" placeholder="Stockholm" required>
+                </div>
+                
+                <div class="col-md-2">
+                  <label for="inputZip" class="form-label">Zip</label>
+                  <input type="number" class="form-control" id="inputZip" placeholder="123 45" required>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                      I have read and understood
+                    </label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+              </form>
         </div>
 
-        <div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2034.2600983394964!2d18.02074981263669!3d59.345306009636055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f9d9d263b022d%3A0x82fc0f30ed84f9ed!2sNackademin!5e0!3m2!1ssv!2sse!4v1709899005556!5m2!1ssv!2sse" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
+        
+        
         
         <!-- Footer-->
         <footer class="py-5 bg-dark">

@@ -10824,3 +10824,16 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+#p1About {
+  padding: 30px;
+}
+
+.map {
+  text-align: center;
+  padding: 2%;
+
+}
+#order-form {
+  padding: 30px;
+}
