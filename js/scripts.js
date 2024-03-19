@@ -8,14 +8,14 @@
 
 function validateForm() {
     var name = document.getElementById("inputName").value;
-    var email = document.getElementById("inputEmai").value;
+    var email = document.getElementById("inputEmail").value;
     var adress = document.getElementById("inputAddress").value;
     var city = document.getElementById("inputCity").value;
     var zip = document.getElementById("inputZip").value;
     var Phone = document.getElementById("inputPhone").value;
 
 
-    if (name.lenght() < 2 || name.lenght() > 50) {
+    if (name.length() < 2 || name.lenght() > 50) {
         alert("För få/många tecken.");
         return false;
     }
@@ -26,7 +26,7 @@ function validateForm() {
         return false;
     }
 
-    if (email.lenght() > 50)
+    if (email.length() > 50)
         alert("För många tecken, max 50")
 
     if (Phone)
@@ -72,17 +72,24 @@ fetch("https://fakestoreapi.com/products/category/electronics")
     const description = product.description;
     const image = product.image;
   
+    const cardIndex = document.querySelectorAll('.card').length;
+    if (cardIndex % 3 === 0) {
+        const newRow = document.createElement("div");
+        newRow.classList.add("row", "d-flex", "justify-content-around");
+        document.querySelector('#products').appendChild(newRow);
+    }
+
     const cardDiv = document.createElement("div");
     cardDiv.classList.add("card");
     cardDiv.classList.add("my-2");
-    cardDiv.classList.add("col-4");
+    cardDiv.classList.add("py-5")
     cardDiv.style.width = "18rem";
   
     const img = document.createElement("img");
     img.classList.add("card-img-top");
     img.src = image;
     img.alt = `image describing ${title}`;
-    img.style.height = "300px";
+    img.style.height = "200px";
   
     const cardBodyDiv = document.createElement("div");
     cardBodyDiv.classList.add("card-body");
@@ -99,11 +106,11 @@ fetch("https://fakestoreapi.com/products/category/electronics")
   
     const cardPrice = document.createElement("p");
     cardPrice.classList.add("card-text");
-    cardPrice.classList.add("text-warning");  
+    cardPrice.classList.add("text-danger");  
     cardPrice.textContent = price;
   
     const btn = document.createElement("a");
-    btn.classList.add("btn", "btn-success", "mt-auto");
+    btn.classList.add("btn", "btn-dark", "mt-auto");
     btn.id = "addToCartId" + id;
     btn.href = "order-form.html";
     btn.textContent = "Add to cart";
