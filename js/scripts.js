@@ -75,6 +75,7 @@ fetch("https://fakestoreapi.com/products/category/electronics")
     const cardDiv = document.createElement("div");
     cardDiv.classList.add("card");
     cardDiv.classList.add("my-2");
+    cardDiv.classList.add("col-4");
     cardDiv.style.width = "18rem";
   
     const img = document.createElement("img");
