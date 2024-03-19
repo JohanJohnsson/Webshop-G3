@@ -10829,11 +10829,42 @@ textarea.form-control-lg {
   padding: 30px;
 }
 
-.map {
-  text-align: center;
-  padding: 2%;
-
-}
 #order-form {
   padding: 30px;
+}
+
+.container-iframe{
+  display: flex;
+  align-items: flex-start;
+}
+.iframe-container {
+  flex: 1;
+  max-width: 50%;
+}
+.contact-info{
+  padding: 15px;
+  margin-left: 50px;
+}
+iframe {
+  padding-left: 10%;
+  
+  width: 80%;
+  height: 550px;
+  border: none;
+}
+.map-header {
+  color: #5c636a;
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.paragraph-info-text {
+  color: #495057;
+}
+
+.section-header {
+  font-weight: bold;
+  margin-bottom: 25px;
 }
