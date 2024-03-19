@@ -8,14 +8,14 @@
 
 function validateForm() {
     var name = document.getElementById("inputName").value;
-    var email = document.getElementById("inputEmai").value;
+    var email = document.getElementById("inputEmail").value;
     var adress = document.getElementById("inputAddress").value;
     var city = document.getElementById("inputCity").value;
     var zip = document.getElementById("inputZip").value;
     var Phone = document.getElementById("inputPhone").value;
 
 
-    if (name.lenght() < 2 || name.lenght() > 50) {
+    if (name.length() < 2 || name.lenght() > 50) {
         alert("För få/många tecken.");
         return false;
     }
@@ -26,7 +26,7 @@ function validateForm() {
         return false;
     }
 
-    if (email.lenght() > 50)
+    if (email.length() > 50)
         alert("För många tecken, max 50")
 
     if (Phone)
