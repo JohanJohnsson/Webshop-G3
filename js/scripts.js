@@ -89,7 +89,7 @@ fetch("https://fakestoreapi.com/products/category/electronics")
     img.classList.add("card-img-top");
     img.src = image;
     img.alt = `image describing ${title}`;
-    img.style.height = "300px";
+    img.style.height = "200px";
   
     const cardBodyDiv = document.createElement("div");
     cardBodyDiv.classList.add("card-body");
