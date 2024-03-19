@@ -79,7 +79,7 @@ fetch("https://fakestoreapi.com/products/category/electronics")
     cardDiv.style.width = "18rem";
   
     const img = document.createElement("img");
-    img.classList.add("card-img-top");
+    img.classList.add("card-img-top");              
     img.src = image;
     img.alt = `image describing ${title}`;
     img.style.height = "300px";
@@ -99,14 +99,14 @@ fetch("https://fakestoreapi.com/products/category/electronics")
   
     const cardPrice = document.createElement("p");
     cardPrice.classList.add("card-text");
-    cardPrice.classList.add("text-warning");  
+    cardPrice.classList.add("text-success");  
     cardPrice.textContent = price;
   
     const btn = document.createElement("a");
-    btn.classList.add("btn", "btn-success", "mt-auto");
+    btn.classList.add("btn", "btn-dark", "mt-auto");
     btn.id = "addToCartId" + id;
     btn.href = "#";
-    btn.textContent = "Add to cart";
+    btn.textContent = "Buy";
       
   
     cardBodyDiv.appendChild(cardTitle);
