@@ -105,9 +105,11 @@ fetch("https://fakestoreapi.com/products/category/electronics")
     const btn = document.createElement("a");
     btn.classList.add("btn", "btn-success", "mt-auto");
     btn.id = "addToCartId" + id;
-    btn.href = "#";
+    btn.href = "order-form.html";
     btn.textContent = "Add to cart";
-      
+    btn.addEventListener('click', function() {
+        getProdctFromList(product);
+    }); 
   
     cardBodyDiv.appendChild(cardTitle);
     cardBodyDiv.appendChild(cardText);
@@ -120,4 +122,8 @@ fetch("https://fakestoreapi.com/products/category/electronics")
   
     const card = document.querySelector('#products');
     card.appendChild(cardDiv);
+  }
+
+  function getProdctFromList(product){
+    console.log(product.title);
   }
