@@ -72,10 +72,16 @@ fetch("https://fakestoreapi.com/products/category/electronics")
     const description = product.description;
     const image = product.image;
   
+    const cardIndex = document.querySelectorAll('.card').length;
+    if (cardIndex % 3 === 0) {
+        const newRow = document.createElement("div");
+        newRow.classList.add("row", "d-flex", "justify-content-around");
+        document.querySelector('#products').appendChild(newRow);
+    }
+
     const cardDiv = document.createElement("div");
     cardDiv.classList.add("card");
     cardDiv.classList.add("my-2");
-    cardDiv.classList.add("col-4");
     cardDiv.style.width = "18rem";
   
     const img = document.createElement("img");
