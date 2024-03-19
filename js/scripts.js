@@ -7,47 +7,64 @@
 // Use this file to add JavaScript to your project
 
 function validateForm() {
-    var name = document.getElementById("inputName").value;
-    var email = document.getElementById("inputEmai").value;
-    var adress = document.getElementById("inputAddress").value;
-    var city = document.getElementById("inputCity").value;
-    var zip = document.getElementById("inputZip").value;
-    var Phone = document.getElementById("inputPhone").value;
+    let name = document.getElementById("inputName").value;
+    let email = document.getElementById("inputEmai").value;
+    let adress = document.getElementById("inputAddress").value;
+    let city = document.getElementById("inputCity").value;
+    let zip = document.getElementById("inputZip").value;
+    let Phone = document.getElementById("inputPhone").value;
 
+    let isValid = true;
 
-    if (name.lenght() < 2 || name.lenght() > 50) {
-        alert("För få/många tecken.");
-        return false;
+    // Validera namn
+    if (name.length < 2 || name.length > 50) {
+        document.getElementById("nameError").innerText = "Namnet måste vara mellan 2 och 50 tecken långt.";
+        isValid = false;
+    } else {
+        document.getElementById("nameError").innerText = "";
     }
 
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert("Vänligen ange en giltig e-postadress.");
-        return false;
+    // Validera e-postadress
+    if (!email.includes("@") || email.length > 50) {
+        document.getElementById("emailError").innerText = "Ogiltig e-postadress.";
+        isValid = false;
+    } else {
+        document.getElementById("emailError").innerText = "";
     }
 
-    if (email.lenght() > 50)
-        alert("För många tecken, max 50")
-
-    if (Phone)
-
-    if (address.trim() === "") {
-        alert("Vänligen ange din adress.");
-        return false;
+    // Validera adress
+    if (address.length < 2 || address.length > 50) {
+        document.getElementById("addressError").innerText = "Adressen måste vara mellan 2 och 50 tecken lång.";
+        isValid = false;
+    } else {
+        document.getElementById("addressError").innerText = "";
     }
 
-    if (city.trim() === "") {
-        alert("Vänligen ange din stad.");
-        return false;
+    // Validera ort
+    if (city.length < 2 || city.length > 50) {
+        document.getElementById("cityError").innerText = "Ortnamnet måste vara mellan 2 och 50 tecken långt.";
+        isValid = false;
+    } else {
+        document.getElementById("cityError").innerText = "";
     }
 
-    var zipRegex = /^[0-9]{5}$/;
-    if (!zipRegex.test(zip)) {
-        alert("Vänligen ange ett giltigt postnummer (5 siffror).");
-        return false;
+    // Validera postnummer
+    if (zip.length !== 5 || isNaN(zip)) {
+        document.getElementById("zipError").innerText = "Ogiltigt postnummer. Exakt 5 siffror krävs.";
+        isValid = false;
+    } else {
+        document.getElementById("zipError").innerText = "";
     }
 
-    return true;
+    // Validera telefonnummer
+    if (!phone.match(/^[0-9()\-\s]{1,50}$/)) {
+        document.getElementById("phoneError").innerText = "Ogiltigt telefonnummer.";
+        isValid = false;
+    } else {
+        document.getElementById("phoneError").innerText = "";
+    }
+
+    return isValid;
 }
 
 fetch("https://fakestoreapi.com/products/category/electronics")
