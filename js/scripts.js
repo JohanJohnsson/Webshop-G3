@@ -150,7 +150,20 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('priceElement').textContent = product.price;
     }
 });
-
+document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve the selected product details
+    const product = JSON.parse(localStorage.getItem('selectedProduct'));
+    
+    if (product) {
+        // Select the product details container
+        const container = document.getElementById('orderdItemContainer');
+        
+        // Update product details only within the container
+        container.querySelector('#productImgElement').src = product.image;
+        container.querySelector('#ProductNameElement').textContent = product.title;
+        container.querySelector('#priceElement').textContent = product.price;
+    }
+});
 
 
   
