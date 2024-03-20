@@ -45,7 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (!onlyLettersRegex.test(inputCity)) {
-          alert('Staden får endaste innehålla 2-50 tecken.')
+          alert('Staden får endaste innehålla 2-50 tecken.');
+          event.preventDefault();
         }
 
         if (!inputZip.length === 5 || !onlyNumbersRegex.test(inputZip)) {
