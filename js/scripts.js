@@ -9,12 +9,16 @@
 document.addEventListener('DOMContentLoaded', function() {
     const submitBtn = document.getElementById("submitBtn");
     submitBtn.addEventListener('click', function(event) {
+      event.preventDefault();
+
         const inputName = document.getElementById('inputName').value.trim();
-        const inputEmail = document.getElementById('inputEmail').value.trim(); // Trim whitespace
+        const inputEmail = document.getElementById('inputEmail').value.trim();
         const inputPhone = document.getElementById('inputPhone').value.trim();
         const inputAddress = document.getElementById('inputAddress').value.trim();
         const inputCity = document.getElementById('inputCity').value.trim();
         const inputZip = document.getElementById('inputZip').value.trim();
+
+        let isValid = true;
 
         // Regular expression to match only letters
         const onlyLettersRegex = /^[A-Za-z\s]{2,50}$/;
@@ -26,33 +30,38 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check if the name field is between 2 and 50 characters and contains only letters
         if (!onlyLettersRegex.test(inputName)) {
             alert('Name must be between 2 and 50 characters long and contain only letters.');
-            event.preventDefault();
+            isValid = false;
         }
 
         if (inputEmail.length > 50 || !containsAtRegex.test(inputEmail)) {
           alert('E-postadressen får inte vara längre än 50 tecken och måste innehålla @.');
-          event.preventDefault();
+          isValid = false;
         }
 
         if (!phoneRegex.test(inputPhone)) {
           alert('Numret får endaste innehålla siffror, paranteser, bindestreck och max 50 tecken långt.');
-          event.preventDefault();
+          isValid = false;
         }
 
         if (inputAddress.length < 2 || inputAddress.length > 50) {
           alert('Addressen får endast vara minst 2 tecken och max 50 tecken.');
-          event.preventDefault();
+          isValid = false;
         }
 
         if (!onlyLettersRegex.test(inputCity)) {
-          alert('Staden får endaste innehålla 2-50 tecken.');
-          event.preventDefault();
+          alert('Staden får endaste innehålla 2-50 tecken.')
+          isValid = false;
         }
 
         if (!inputZip.length === 5 || !onlyNumbersRegex.test(inputZip)) {
           alert('Postkoden får endast vara 5 siffror');
-          event.preventDefault();
+          isValid = false;
         }
+
+        if (isValid) {
+          window.location.href = 'purchaseConfirmationPage.html'; // Redirect the user
+      }
+
         // You can add additional custom validation logic here as needed
     });
 });
