@@ -131,6 +131,11 @@ fetch("https://fakestoreapi.com/products/category/electronics")
     card.appendChild(cardDiv);
   }
 
-  function getProdctFromList(product){
+    function getProdctFromList(product){
     console.log(product.title);
+    
+
+    var productName = document.querySelector("#orderFormItemContainer h6");
+    // Update the text content
+    productName.textContent = product.title;   
   }
