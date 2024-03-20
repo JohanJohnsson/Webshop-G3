@@ -120,6 +120,8 @@ fetch("https://fakestoreapi.com/products/category/electronics")
         // Redirect to the product details page
         window.location.href = 'order-form.html';
     };
+
+
       
   
     cardBodyDiv.appendChild(cardTitle);
@@ -133,5 +135,23 @@ fetch("https://fakestoreapi.com/products/category/electronics")
   
     const card = document.querySelector('#products');
     card.appendChild(cardDiv);
-  }
+  }; 
+
+  
+document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve the selected product details
+    const product = JSON.parse(localStorage.getItem('selectedProduct'));
+    
+    if (product) {
+        // Assuming you have placeholders for product details
+        document.querySelector('.list-group-item img').src = product.image;
+        document.querySelector('.list-group-item .my-0').textContent = product.title;
+        document.querySelector('.list-group-item .text-muted').textContent = product.description;
+        document.querySelector('.list-group-item .text-muted').nextElementSibling.textContent = product.price;
+    }
+});
+
+
+
+  
   
