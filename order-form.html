@@ -116,5 +116,20 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+              // Retrieve the selected product details
+              const product = JSON.parse(localStorage.getItem('selectedProduct'));
+              
+              if (product) {
+                  // Assuming you have placeholders for product details
+                  document.querySelector('.list-group-item img').src = product.image;
+                  document.querySelector('.list-group-item .my-0').textContent = product.title;
+                  document.querySelector('.list-group-item .text-muted').textContent = product.description;
+                  document.querySelector('.list-group-item .text-muted').nextElementSibling.textContent = product.price;
+              }
+          });
+          </script>
     </body>
 </html>
