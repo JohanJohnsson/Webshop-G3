@@ -112,11 +112,17 @@ fetch("https://fakestoreapi.com/products/category/electronics")
     const btn = document.createElement("a");
     btn.classList.add("btn", "btn-dark", "mt-auto");
     btn.id = "addToCartId" + id;
-    btn.href = "order-form.html";
-    btn.textContent = "Add to cart";
-    btn.addEventListener('click', function() {
-        getProdctFromList(product);
-    }); 
+    btn.type = "button";
+    btn.textContent = "Buy";
+    btn.onclick = function() {
+        // Store product details in localStorage for retrieval on the next page
+        localStorage.setItem('selectedProduct', JSON.stringify({id, title, price, description, image}));
+        // Redirect to the product details page
+        window.location.href = 'order-form.html';
+    };
+
+
+      
   
     cardBodyDiv.appendChild(cardTitle);
     cardBodyDiv.appendChild(cardText);
@@ -129,13 +135,23 @@ fetch("https://fakestoreapi.com/products/category/electronics")
   
     const card = document.querySelector('#products');
     card.appendChild(cardDiv);
-  }
+  }; 
 
-    function getProdctFromList(product){
-    console.log(product.title);
+  
+document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve the selected product details
+    const product = JSON.parse(localStorage.getItem('selectedProduct'));
     
+    if (product) {
+        // Assuming you have placeholders for product details
+        document.querySelector('.list-group-item img').src = product.image;
+        document.querySelector('.list-group-item .my-0').textContent = product.title;
+        document.querySelector('.list-group-item .text-muted').textContent = product.description;
+        document.querySelector('.list-group-item .text-muted').nextElementSibling.textContent = product.price;
+    }
+});
 
-    var productName = document.querySelector("#orderFormItemContainer h6");
-    // Update the text content
-    productName.textContent = product.title;   
-  }
+
+
+  
+  
