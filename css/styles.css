@@ -10868,3 +10868,19 @@ iframe {
   font-weight: bold;
   margin-bottom: 25px;
 }
+
+#ProductNameElement {
+  text-align: center;
+}
+
+#productImgElement {
+  height: 90px; /* Justera höjden på bilden */
+  width: auto; /* Sätt bredden till auto för att behålla proportionerna */
+}
+
+#descriptionElement {
+  display: block;
+  padding: 15px;
+}
+
+
