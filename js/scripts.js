@@ -144,10 +144,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (product) {
         // Assuming you have placeholders for product details
-        document.querySelector('.list-group-item img').src = product.image;
-        document.querySelector('.list-group-item .my-0').textContent = product.title;
-        document.querySelector('.list-group-item .text-muted').textContent = product.description;
-        document.querySelector('.list-group-item .text-muted').nextElementSibling.textContent = product.price;
+        document.getElementById('productImgElement').src = product.image;
+        document.getElementById('ProductNameElement').textContent = product.title;
+        document.getElementById('descriptionElement').textContent = product.description;
+        document.getElementById('priceElement').textContent = product.price;
     }
 });
 
