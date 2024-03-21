@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const inputAddress = document.getElementById('inputAddress').value.trim();
         const inputCity = document.getElementById('inputCity').value.trim();
         const inputZip = document.getElementById('inputZip').value.trim();
-
         let isValid = true;
 
         // Regular expression to match only letters
