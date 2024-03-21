@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
     submitBtn.addEventListener('click', function(event) {
       event.preventDefault();
 
+      removeAlerts();
+
         const inputName = document.getElementById('inputName').value.trim();
         const inputEmail = document.getElementById('inputEmail').value.trim();
         const inputPhone = document.getElementById('inputPhone').value.trim();
@@ -29,32 +31,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Check if the name field is between 2 and 50 characters and contains only letters
         if (!onlyLettersRegex.test(inputName)) {
-            alert('Name must be between 2 and 50 characters long and contain only letters.');
+            displayAlert("Name must be between 2 and 50 characters long and contain only letters.", document.getElementById('inputName'));
             isValid = false;
         }
 
         if (inputEmail.length > 50 || !containsAtRegex.test(inputEmail)) {
-          alert('E-postadressen får inte vara längre än 50 tecken och måste innehålla @.');
+          displayAlert('E-postadressen får inte vara längre än 50 tecken och måste innehålla @.', document.getElementById('inputEmail'));
           isValid = false;
         }
 
         if (!phoneRegex.test(inputPhone)) {
-          alert('Numret får endaste innehålla siffror, paranteser, bindestreck och max 50 tecken långt.');
-          isValid = false;
-        }
+            displayAlert('Numret får endast innehålla siffror, paranteser, bindestreck och max 50 tecken långt.', document.getElementById('inputPhone'));
+            isValid = false;
+          }
 
         if (inputAddress.length < 2 || inputAddress.length > 50) {
-          alert('Addressen får endast vara minst 2 tecken och max 50 tecken.');
+          displayAlert('Addressen får endast vara minst 2 tecken och max 50 tecken.', document.getElementById('inputAddress'));
           isValid = false;
         }
 
         if (!onlyLettersRegex.test(inputCity)) {
-          alert('Staden får endaste innehålla 2-50 tecken.')
+          displayAlert('Staden får endast innehålla 2-50 tecken.', document.getElementById('inputCity'))
           isValid = false;
         }
 
         if (!inputZip.length === 5 || !onlyNumbersRegex.test(inputZip)) {
-          alert('Postkoden får endast vara 5 siffror');
+          displayAlert('Postkoden får endast vara 5 siffror', document.getElementById('inputZip'));
           isValid = false;
         }
 
@@ -65,6 +67,22 @@ document.addEventListener('DOMContentLoaded', function() {
         // You can add additional custom validation logic here as needed
     });
 });
+
+function displayAlert(message, inputField) {
+    // Create alert div
+    const alertDiv = document.createElement('div');
+    alertDiv.classList.add('alert', 'alert-danger');
+    alertDiv.setAttribute('role', 'alert');
+    alertDiv.textContent = message;
+
+    // Insert alert after the input field
+    inputField.parentNode.insertBefore(alertDiv, inputField.nextSibling);
+}
+
+function removeAlerts() {
+    const alerts = document.querySelectorAll('.alert-danger');
+    alerts.forEach(alert => alert.remove());
+}
 
 fetch("https://fakestoreapi.com/products/category/electronics")
   .then((res) => res.json())
