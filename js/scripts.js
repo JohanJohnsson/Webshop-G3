@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const inputAddress = document.getElementById('inputAddress').value.trim();
         const inputCity = document.getElementById('inputCity').value.trim();
         const inputZip = document.getElementById('inputZip').value.trim();
-
         let isValid = true;
 
         // Regular expression to match only letters
@@ -33,27 +32,27 @@ document.addEventListener('DOMContentLoaded', function() {
             isValid = false;
         }
 
-        if (inputEmail.length > 50 || !containsAtRegex.test(inputEmail)) {
+        else if (inputEmail.length > 50 || !containsAtRegex.test(inputEmail)) {
           alert('E-postadressen får inte vara längre än 50 tecken och måste innehålla @.');
           isValid = false;
         }
 
-        if (!phoneRegex.test(inputPhone)) {
+        else if (!phoneRegex.test(inputPhone)) {
           alert('Numret får endaste innehålla siffror, paranteser, bindestreck och max 50 tecken långt.');
           isValid = false;
         }
 
-        if (inputAddress.length < 2 || inputAddress.length > 50) {
+        else if (inputAddress.length < 2 || inputAddress.length > 50) {
           alert('Addressen får endast vara minst 2 tecken och max 50 tecken.');
           isValid = false;
         }
 
-        if (!onlyLettersRegex.test(inputCity)) {
+        else if (!onlyLettersRegex.test(inputCity)) {
           alert('Staden får endaste innehålla 2-50 tecken.')
           isValid = false;
         }
 
-        if (!inputZip.length === 5 || !onlyNumbersRegex.test(inputZip)) {
+        else if (!inputZip.length === 5 || !onlyNumbersRegex.test(inputZip)) {
           alert('Postkoden får endast vara 5 siffror');
           isValid = false;
         }
