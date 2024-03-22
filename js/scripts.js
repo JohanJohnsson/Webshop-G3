@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Regular expression to match only letters
         const onlyLettersRegex = /^[A-Za-z\s]{2,50}$/;
         const containsAtRegex = /@/;
-        const phoneRegex = /^[0-9\d\s()-]{1,50}$/;
+        const phoneRegex = /^[\d\s()-]{0,50}$/;
         const onlyNumbersRegex = /[0-9]/;
         
 
@@ -73,6 +73,8 @@ function displayAlert(message, inputField) {
     alertDiv.classList.add('alert', 'alert-danger');
     alertDiv.setAttribute('role', 'alert');
     alertDiv.textContent = message;
+    alertDiv.style.padding = "5px 10px"; // Smaller padding
+    alertDiv.style.fontSize = "0.8rem"; // Smaller font size
 
     // Insert alert after the input field
     inputField.parentNode.insertBefore(alertDiv, inputField.nextSibling);
