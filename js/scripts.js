@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Regular expression to match only letters
         const onlyLettersRegex = /^[A-Za-z\s]{2,50}$/;
         const containsAtRegex = /@/;
-        const phoneRegex = /^[\d\s()-]{0,50}$/;
+        const phoneRegex = /^[0-9\d\s()-]{1,50}$/;
         const onlyNumbersRegex = /[0-9]/;
         
 
