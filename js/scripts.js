@@ -7,6 +7,7 @@
 // Use this file to add JavaScript to your project
 
 document.addEventListener('DOMContentLoaded', function() {
+  if (window.location.pathname.includes("order-form.html")) {
     const submitBtn = document.getElementById("submitBtn");
     submitBtn.addEventListener('click', function(event) {
       event.preventDefault();
@@ -21,14 +22,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const inputZip = document.getElementById('inputZip').value.trim();
         let isValid = true;
 
-        // Regular expression to match only letters
         const onlyLettersRegex = /^[A-Za-z\s]{2,50}$/;
         const containsAtRegex = /@/;
         const phoneRegex = /^[0-9\d\s()-]{1,50}$/;
         const onlyNumbersRegex = /[0-9]/;
         
-
-        // Check if the name field is between 2 and 50 characters and contains only letters
         if (!onlyLettersRegex.test(inputName)) {
             displayAlert("Name must be between 2 and 50 characters long and contain only letters.", document.getElementById('inputName'));
             isValid = false;
@@ -60,21 +58,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (isValid) {
-          window.location.href = 'purchaseConfirmationPage.html'; // Redirect the user
+          window.location.href = 'purchaseConfirmationPage.html'; 
       }
 
-        // You can add additional custom validation logic here as needed
     });
-});
+}});
 
 function displayAlert(message, inputField) {
-    // Create alert div
     const alertDiv = document.createElement('div');
     alertDiv.classList.add('alert', 'alert-danger');
     alertDiv.setAttribute('role', 'alert');
     alertDiv.textContent = message;
 
-    // Insert alert after the input field
     inputField.parentNode.insertBefore(alertDiv, inputField.nextSibling);
 }
 
@@ -83,17 +78,21 @@ function removeAlerts() {
     alerts.forEach(alert => alert.remove());
 }
 
-fetch("https://fakestoreapi.com/products/category/electronics")
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.location.pathname.includes("index.html")) {
+    fetchAndCreateCards();
+  }});
+
+function fetchAndCreateCards(){
+  fetch("https://fakestoreapi.com/products/category/electronics")
   .then((res) => res.json())
   .then((json) => {
     json.forEach((item) => {
-        try{
-          createCard(item);
-    } catch (error) {
-  
-    }
+        createCard(item);
     });
   });
+}
+
 
 
 
@@ -101,7 +100,6 @@ fetch("https://fakestoreapi.com/products/category/electronics")
     const id = product.id;
     const title = product.title;
     const price = "Price: " + product.price + "$";
-    //const category = product.category
     const description = product.description;
     const image = product.image;
   
@@ -148,15 +146,10 @@ fetch("https://fakestoreapi.com/products/category/electronics")
     btn.type = "button";
     btn.textContent = "Buy";
     btn.onclick = function() {
-        // Store product details in localStorage for retrieval on the next page
         localStorage.setItem('selectedProduct', JSON.stringify({id, title, price, description, image}));
-        // Redirect to the product details page
         window.location.href = 'order-form.html';
     };
 
-
-      
-  
     cardBodyDiv.appendChild(cardTitle);
     cardBodyDiv.appendChild(cardText);
     cardBodyDiv.appendChild(cardPrice);
@@ -165,38 +158,37 @@ fetch("https://fakestoreapi.com/products/category/electronics")
     cardDiv.appendChild(img);
     cardDiv.appendChild(cardBodyDiv);
   
-  
     const card = document.querySelector('#products');
     card.appendChild(cardDiv);
   }; 
 
-  
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Retrieve the selected product details
+  if (window.location.pathname.includes("order-form.html")) {
     const product = JSON.parse(localStorage.getItem('selectedProduct'));
     
     if (product) {
-        // Assuming you have placeholders for product details
         document.getElementById('productImgElement').src = product.image;
         document.getElementById('ProductNameElement').textContent = product.title;
         document.getElementById('descriptionElement').textContent = product.description;
         document.getElementById('priceElement').textContent = product.price;
+        console.log(localStorage.length)
     }
-});
+}});
+
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Retrieve the selected product details
+  if (window.location.pathname.includes("purchaseConfirmationPage.html")) {
     const product = JSON.parse(localStorage.getItem('selectedProduct'));
     
     if (product) {
-        // Select the product details container
         const container = document.getElementById('orderdItemContainer');
-        
-        // Update product details only within the container
         container.querySelector('#productImgElement').src = product.image;
         container.querySelector('#ProductNameElement').textContent = product.title;
         container.querySelector('#priceElement').textContent = product.price;
+        window.localStorage.clear();
     }
-});
+}});
 
 
   
