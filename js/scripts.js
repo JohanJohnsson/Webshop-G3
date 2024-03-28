@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function () {
       totalSum += totalPricePerItem;
     });
 
-    // Display the updated total summ
+    // Display the updated total sum
     totalSumContainer.innerHTML = `<strong>Total Sum:</strong> $${totalSum.toFixed(2)}`;
   }
 
