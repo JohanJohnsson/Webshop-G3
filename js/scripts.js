@@ -247,18 +247,21 @@ document.addEventListener('DOMContentLoaded', function () {
       const itemElement = document.createElement('li');
       itemElement.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
       itemElement.innerHTML = `
-        <div class="d-flex gap-3 align-items-center">
-            <img src="${item.image}" alt="${item.title}" style="width: 50px; height: auto;">
-            <div>
-                <h6 class="my-0">${item.title}</h6>
-            </div>
-        </div>
-        <div class="d-flex align-items-center">
+        <div class="row align-items-center">
+          <div class="col-2">
+            <img src="${item.image}" alt="${item.title}" style="width: 75%; height: auto;">
+          </div>
+          <div class="col-6">
+            <h6 class="my-0">${item.title}</h6>
+          </div>
+          <div class="col-2 text-center">
             <button class="btn btn-outline-secondary btn-sm" onclick="changeQuantity(${index}, -1)">-</button>
             <span class="mx-2">${item.quantity}</span>
             <button class="btn btn-outline-secondary btn-sm" onclick="changeQuantity(${index}, 1)">+</button>
-            <span class="text-muted mx-3">$${item.price}</span>
+          </div>
+          <div class="col-2 text-center">
             <strong>$${totalPricePerItem.toFixed(2)}</strong>
+          </div>
         </div>
       `;
       cartItemsContainer.appendChild(itemElement);
