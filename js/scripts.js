@@ -171,9 +171,7 @@ function createCard(product) {
     localStorage.setItem('cart', JSON.stringify(cart));
 
     // Optionally, redirect to a cart page or show a confirmation
-    alert('Product added to cart!');
     updateCartCount()
-
   };
 
 
@@ -238,40 +236,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to update the cart display
   function updateCartDisplay() {
-    cartItemsContainer.innerHTML = ''; // Clear current items display
+    if (cartItemsContainer) {
+      cartItemsContainer.innerHTML = ''; // Clear current items display
 
-    cart.forEach((item, index) => {
-      // Calculate total price for each item (price * quantity)
-      let totalPricePerItem = item.price * item.quantity;
+      cart.forEach((item, index) => {
+        // Calculate total price for each item (price * quantity)
+        let totalPricePerItem = item.price * item.quantity;
 
-      const itemElement = document.createElement('li');
-      itemElement.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
-      itemElement.innerHTML = `
+        const itemElement = document.createElement('li');
+        itemElement.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+        itemElement.innerHTML = `
         <div class="row align-items-center">
-          <div class="col-2">
-            <img src="${item.image}" alt="${item.title}" style="width: 75%; height: auto;">
+          <div class="col-sm-2 col-lg-1">
+            <img src="${item.image}" alt="${item.title}" style="width: 100%; height: auto;">
           </div>
-          <div class="col-6">
+          <div class="col-sm-4 col-lg-7">
             <h6 class="my-0">${item.title}</h6>
           </div>
-          <div class="col-2 text-center">
+          <div class="col-sm-3 col-lg-2 text-center">
             <button class="btn btn-outline-secondary btn-sm" onclick="changeQuantity(${index}, -1)">-</button>
             <span class="mx-2">${item.quantity}</span>
             <button class="btn btn-outline-secondary btn-sm" onclick="changeQuantity(${index}, 1)">+</button>
           </div>
-          <div class="col-2 text-center">
+          <div class="col-sm-3 col-lg-2 text-end">
             <strong>$${totalPricePerItem.toFixed(2)}</strong>
           </div>
         </div>
       `;
-      cartItemsContainer.appendChild(itemElement);
+        cartItemsContainer.appendChild(itemElement);
 
-      // Update the total sum
-      totalSum += totalPricePerItem;
-    });
+        // Update the total sum
+        totalSum += totalPricePerItem;
+      });
 
-    // Display the updated total sum
-    totalSumContainer.innerHTML = `<strong>Total Sum:</strong> $${totalSum.toFixed(2)}`;
+      // Display the updated total sum
+      totalSumContainer.innerHTML = `<strong>Total Sum:</strong> $${totalSum.toFixed(2)}`;
+    }
   }
 
   // Add event listener for the Clear Cart button
@@ -338,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Display the total sum in the totalSumContainer
     totalSumContainer.innerHTML = `<strong>Total Sum:</strong> $${totalSum.toFixed(2)}`;
   }
-  
+
   // Uncomment the next line if you want to clear the cart after loading the purchased items. 
   // This depends on whether you want the cart to be emptied after showing the purchase confirmation.
   // localStorage.removeItem('cart');
