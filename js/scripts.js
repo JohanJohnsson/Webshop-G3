@@ -3,15 +3,12 @@
 * Copyright 2013-2023 Start Bootstrap
 * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
 */
-// This file is intentionally blank
-// Use this file to add JavaScript to your project
 
 document.addEventListener('DOMContentLoaded', function () {
   const submitBtn = document.getElementById("submitBtn");
   if (submitBtn) {
     submitBtn.addEventListener('click', function (event) {
       event.preventDefault();
-
       removeAlerts();
 
       const inputName = document.getElementById('inputName').value.trim();
@@ -22,16 +19,13 @@ document.addEventListener('DOMContentLoaded', function () {
       const inputZip = document.getElementById('inputZip').value.trim();
       let isValid = true;
 
-      // Regular expression to match only letters
       const onlyLettersRegex = /^[A-Za-z\s]{2,50}$/;
       const containsAtRegex = /@/;
       const phoneRegex = /^[0-9\d\s()-]{1,50}$/;
-      const onlyNumbersRegex = /[0-9]/;
+      const zipRegex = /^\d{3}\s?\d{2}$/;
 
-
-      // Check if the name field is between 2 and 50 characters and contains only letters
       if (!onlyLettersRegex.test(inputName)) {
-        displayAlert("Name must be between 2 and 50 characters long and contain only letters.", document.getElementById('inputName'));
+        displayAlert("Namn måste vara mellan 2-50 tecken och bara innehålla bokstäver.", document.getElementById('inputName'));
         isValid = false;
       }
 
@@ -55,16 +49,14 @@ document.addEventListener('DOMContentLoaded', function () {
         isValid = false;
       }
 
-      if (!inputZip.length === 5 || !onlyNumbersRegex.test(inputZip)) {
-        displayAlert('Postkoden får endast vara 5 siffror', document.getElementById('inputZip'));
+      if (!zipRegex.test(inputZip)) {
+        displayAlert('Postnummer måste vara 5 siffror.', document.getElementById('inputZip'));
         isValid = false;
       }
 
       if (isValid) {
-        window.location.href = 'purchaseConfirmationPage.html'; // Redirect the user
+        window.location.href = 'purchaseConfirmationPage.html';
       }
-
-      // You can add additional custom validation logic here as needed
     });
   }
 });
@@ -76,8 +68,8 @@ function displayAlert(message, inputField) {
   alertDiv.classList.add('alert', 'alert-danger');
   alertDiv.setAttribute('role', 'alert');
   alertDiv.textContent = message;
-  alertDiv.style.padding = "5px 10px"; // Smaller padding
-  alertDiv.style.fontSize = "0.8rem"; // Smaller font size
+  alertDiv.style.padding = "5px 10px";
+  alertDiv.style.fontSize = "0.8rem";
 
   // Insert alert after the input field
   inputField.parentNode.insertBefore(alertDiv, inputField.nextSibling);
@@ -101,12 +93,10 @@ fetch("https://fakestoreapi.com/products/category/electronics")
   });
 
 
-
 function createCard(product) {
   const id = product.id;
   const title = product.title;
   const price = "Price: " + product.price + "$";
-  //const category = product.category
   const description = product.description;
   const image = product.image;
 
@@ -153,29 +143,21 @@ function createCard(product) {
   btn.type = "button";
   btn.textContent = "Buy";
   btn.onclick = function () {
-    // Retrieve the existing cart from localStorage or initialize it if it doesn't exist
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Check if the product is already in the cart
     const existingProductIndex = cart.findIndex(item => item.id === product.id);
     if (existingProductIndex !== -1) {
-      // If the product exists, increment its quantity
       cart[existingProductIndex].quantity += 1;
     } else {
-      // If it's a new product, add it to the cart with a quantity of 1
       const productToAdd = { ...product, quantity: 1 };
       cart.push(productToAdd);
     }
 
     // Update the cart in localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Optionally, redirect to a cart page or show a confirmation
     updateCartCount()
   };
-
-
-
 
   cardBodyDiv.appendChild(cardTitle);
   cardBodyDiv.appendChild(cardText);
@@ -197,29 +179,12 @@ document.addEventListener('DOMContentLoaded', function () {
   const product = JSON.parse(localStorage.getItem('selectedProduct'));
 
   if (product) {
-    // Assuming you have placeholders for product details
     document.getElementById('productImgElement').src = product.image;
     document.getElementById('ProductNameElement').textContent = product.title;
     document.getElementById('descriptionElement').textContent = product.description;
     document.getElementById('priceElement').textContent = product.price;
   }
 });
-document.addEventListener('DOMContentLoaded', function () {
-  // Retrieve the selected product details
-  const product = JSON.parse(localStorage.getItem('selectedProduct'));
-
-  if (product) {
-    // Select the product details container
-    const container = document.getElementById('orderdItemContainer');
-
-    // Update product details only within the container
-    container.querySelector('#productImgElement').src = product.image;
-    container.querySelector('#ProductNameElement').textContent = product.title;
-    container.querySelector('#priceElement').textContent = product.price;
-  }
-});
-
-
 
 document.getElementById('viewCartButton').addEventListener('click', function () {
   window.location.href = 'order-form.html'; // Redirect to the cart page
@@ -237,10 +202,9 @@ document.addEventListener('DOMContentLoaded', function () {
   // Function to update the cart display
   function updateCartDisplay() {
     if (cartItemsContainer) {
-      cartItemsContainer.innerHTML = ''; // Clear current items display
+      cartItemsContainer.innerHTML = '';
 
       cart.forEach((item, index) => {
-        // Calculate total price for each item (price * quantity)
         let totalPricePerItem = item.price * item.quantity;
 
         const itemElement = document.createElement('li');
@@ -264,26 +228,20 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       `;
         cartItemsContainer.appendChild(itemElement);
-
-        // Update the total sum
         totalSum += totalPricePerItem;
       });
-
-      // Display the updated total sum
       totalSumContainer.innerHTML = `<strong>Total Sum:</strong> $${totalSum.toFixed(2)}`;
     }
   }
 
-  // Add event listener for the Clear Cart button
   if (clearCartButton) {
     clearCartButton.addEventListener('click', function () {
       localStorage.removeItem('cart');
-      cart = []; // Clear the cart array
-      updateCartDisplay(); // Refresh the cart display
+      cart = [];
+      updateCartDisplay();
     });
   }
-
-  updateCartDisplay(); // Initial display of cart items
+  updateCartDisplay();
 });
 
 function changeQuantity(index, delta) {
@@ -294,11 +252,10 @@ function changeQuantity(index, delta) {
       cart.splice(index, 1); // Remove item if quantity is less than or equal to 0
     }
     localStorage.setItem('cart', JSON.stringify(cart));
-    window.location.reload(); // Reload the page to update the cart display
+    window.location.reload();
   }
   updateCartCount()
 }
-
 
 function updateCartCount() {
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -306,11 +263,10 @@ function updateCartCount() {
   document.querySelector('#viewCartButton .badge').textContent = totalCount;
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const purchasedItemsList = document.getElementById('purchasedItemsList');
   const totalSumContainer = document.getElementById('totalSumContainer');
-  let totalSum = 0; // Initialize total sum variable
+  let totalSum = 0;
 
   if (purchasedItemsList) {
     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
@@ -330,16 +286,9 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
       `;
       purchasedItemsList.appendChild(li);
-
-      // Update the total sum for each item
       totalSum += item.price * item.quantity;
     });
-
-    // Display the total sum in the totalSumContainer
     totalSumContainer.innerHTML = `<strong>Total Sum:</strong> $${totalSum.toFixed(2)}`;
+    localStorage.removeItem('cart');
   }
-
-  // Uncomment the next line if you want to clear the cart after loading the purchased items. 
-  // This depends on whether you want the cart to be emptied after showing the purchase confirmation.
-  // localStorage.removeItem('cart');
 });
