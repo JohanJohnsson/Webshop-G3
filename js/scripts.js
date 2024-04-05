@@ -240,6 +240,8 @@ document.addEventListener('DOMContentLoaded', function () {
       localStorage.removeItem('cart');
       cart = [];
       updateCartDisplay();
+      updateCartCount()
+      totalSumContainer.innerHTML = `<strong>Total Sum:</strong> $0`;
     });
   }
   updateCartDisplay();
