@@ -143,6 +143,7 @@ function createCard(product) {
   btn.type = "button";
   btn.textContent = "Buy";
   btn.onclick = function () {
+    showToast('Item added to cart!');
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Check if the product is already in the cart
@@ -292,3 +293,37 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('cart');
   }
 });
+
+
+function showToast(message) {
+  const toastContainer = document.getElementById('toastContainer');
+
+  const toast = document.createElement('div');
+  toast.classList.add('toast', 'show', 'align-items-center', 'text-white', 'bg-dark', 'border-0');
+  toast.setAttribute('role', 'alert');
+  toast.setAttribute('aria-live', 'assertive');
+  toast.setAttribute('aria-atomic', 'true');
+  toast.innerHTML = `
+    <div class="d-flex">
+      <div class="toast-body">
+        ${message}
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></div>
+    </div>
+  `;
+
+  // Append the toast to the container
+  toastContainer.appendChild(toast);
+
+  // Initialize and show the toast with Bootstrap's Toast JavaScript with autohide and delay options
+  const bsToast = new bootstrap.Toast(toast, {
+    autohide: true,
+    delay: 2000 // Hide after 2 seconds
+  });
+  bsToast.show();
+
+  // Automatically remove the toast after it hides
+  toast.addEventListener('hidden.bs.toast', function () {
+    toast.remove();
+  });
+}
